@@ -1,4 +1,4 @@
-package com.moinros.project.tool.email.smtp;
+package com.moinros.project.tool.email.bean;
 
 /**
  * 注释: 收件人信息

@@ -1,4 +1,4 @@
-package com.moinros.project.tool.email.smtp;
+package com.moinros.project.tool.email.bean;
 
 /**
  * 注释: 发件人信息
@@ -13,7 +13,7 @@ public class Sender {
     /**
      * 注释: 发送邮件使用的端口号
      */
-    private Integer port;
+    private int port;
 
     /**
      * 注释: 发送邮箱的服务器地址
@@ -46,14 +46,14 @@ public class Sender {
     /**
      * 注释: 获取 发送邮件使用的端口号
      */
-    public Integer getPort() {
+    public int getPort() {
         return port;
     }
 
     /**
      * 注释: 设置 发送邮件使用的端口号
      */
-    public void setPort(Integer port) {
+    public void setPort(int port) {
         this.port = port;
     }
 
