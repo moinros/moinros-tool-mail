@@ -42,18 +42,6 @@
     recipient.setContent("测试邮件的文本内容");
     rse.setRecipient(recipient);
     
-    // 单线程发送邮件,成功返回true,失败返回false;不推荐使用
-    rse.send();
-    
-    // success 和 error 为回调函数,无参数,无返回值;推荐使用lambda表达式
-    // success 邮件发送成功调用,error 邮件发送失败调用，
-    rse.send(success, error);
-    // 示例
-    rse.send(
-        () -> { System.out.println("邮件发送成功时调用"); },
-        () -> { System.out.println("邮件发送失败时调用"); }
-    );
-    
 #### 发送邮件 ####
     // 单线程发送邮件,成功返回true,失败返回false;不推荐使用
     rse.send();
