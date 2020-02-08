@@ -11,7 +11,7 @@ import javax.mail.MessagingException;
 
 public class DefineEmail implements RosSenderEmail {
     private SmtpEmail sm;
-    private boolean debug;
+    private boolean debug = false;
     private boolean printLog = false;
     private String logPath = null;
 
@@ -21,7 +21,6 @@ public class DefineEmail implements RosSenderEmail {
 
     @Override
     public boolean send() throws MessagingException {
-
         if (sm.getSender() == null) {
             EmailConfig cof = EmailConfig.getConfig();
             Sender sender = new Sender();
@@ -31,7 +30,7 @@ public class DefineEmail implements RosSenderEmail {
             sender.setSenderName(cof.getSenderName());
             sender.setLoginName(cof.getLoginName());
             sender.setPassword(cof.getPassword());
-            sm.isDebug(cof.getDebug());
+            sm.isDebug(debug);
             sm.setSender(sender);
         }
         return sm.send();

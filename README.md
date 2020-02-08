@@ -1,9 +1,7 @@
-晓默 - Java 发送邮件的工具类
+晓默 - Java 发送邮件的工具包
 ==========
-
 ### 外部调用 - API ###
-
-#### 包结构 ####
+* #### 包结构 ####
 >       com.moinros.project.tool.email.RosSenderEmail
 >       com.moinros.project.tool.email.RunnableEmail
 >       com.moinros.project.tool.email.fns.Callback
@@ -12,9 +10,8 @@
 >       com.moinros.project.tool.email.smtp.DefineEmail
 >       com.moinros.project.tool.email.smtp.SmtpEmail
 >       com.moinros.project.tool.email.bean.Sender
->       com.moinros.project.tool.email.bean.Recipient
-    
-#### 初始化 - 配置信息 ####
+>       com.moinros.project.tool.email.bean.Recipient 
+* #### 初始化 - 配置信息 ####
 >       EmailConfig conf = EmailConfig.getConfig();
 >    
 >       // 自定义配置文件路径,默认[moinros-config.properties],
@@ -29,10 +26,8 @@
 >       conf.setLoginName("账号");
 >       conf.setPassword("密码");
 >       conf.setSenderFrom("邮箱");
->       conf.setSenderName("晓默的博客");
->       conf.isDebug(false);
-        
-#### 设置参数 ####
+>       conf.setSenderName("晓默的博客");     
+* #### 设置参数 ####
 >       // 通过静态方法创建 RosSenderEmail 的实例
 >       RosSenderEmail rse = RosSenderEmail.getRosSenderEmail();
 >
@@ -45,8 +40,7 @@
 >   
 >       // 设置邮件参数 - 方式二
 >       rse.setRecipient(subject, email, content);
-    
-#### 发送邮件 ####
+* #### 发送邮件 ####
 >       // 邮件参数设置完成后调用send方法发送邮件
 >    
 >       // 单线程发送邮件,成功返回true,失败返回false;不推荐使用
@@ -66,10 +60,8 @@
 >       rse.send(
 >           () -> { System.out.println("邮件发送成功时调用"); },
 >           () -> { System.out.println("邮件发送失败时调用"); }
->       );
-    
-#### 测试示例 ####
-
+>       ); 
+* #### 测试示例 ####
 >       EmailConfig conf = EmailConfig.getConfig();
 >       conf.init();
 >
@@ -84,26 +76,23 @@
 >           System.out.println("邮件发送成功时调用");
 >       }, () -> {
 >           System.out.println("邮件发送失败时调用");
->       });
-		
-#### 配置文件 ####
-*   在项目根目录下创建名为 moinros-config.properties 的配置文件
+>       });	
+* #### 配置文件 ####
+    *   在项目根目录下创建名为 moinros-config.properties 的配置文件
 >       email.host: smtp.qq.com
 >       email.port: 25
 >       email.sender.from: moinros@qq.com
 >       email.sender.name: Project of moinros
 >       email.login.name: moinros@qq.com
 >       email.login.password: jtybtqrwxruubgih
->       email.debug: false   
-#### 依赖的jar包 ####
+* #### 依赖的jar包 ####
 >       javax.mail-1.6.2.ajr 
 >       commons-email-1.5.jar
 >       activation-1.1.1.jar
 > + [javax.mail-1.6.2.ajr - 传送门](https://mvnrepository.com/artifact/com.sun.mail/javax.mail)
 > + [commons-email-1.5.jar - 传送门](https://mvnrepository.com/artifact/org.apache.commons/commons-email)
 > + [activation-1.1.1.jar - 传送门](https://mvnrepository.com/artifact/javax.activation/activation)
-
-#### 其他功能详解 ####
+* #### 其他功能详解 ####
 >       // ReadHtmlFile // 读取HTML文件模板工具类
 >       // 指定HTML模板路径读取HTML模板
 >       ReadHtmlFile.getHtmlTemplate("htmlPath");

@@ -32,7 +32,6 @@ public class EmailConfig {
     private String senderName;
     private String loginName;
     private String password;
-    private boolean debug;
 
     /**
      * 注释: 初始化配置参数
@@ -52,8 +51,6 @@ public class EmailConfig {
                     senderName = (config.getProperty("email.sender.name"));
                     loginName = (config.getProperty("email.login.name"));
                     password = (config.getProperty("email.login.password"));
-                    String de = config.getProperty("email.debug");
-                    debug = de == null ? false : Boolean.parseBoolean(de);
                 } catch (UnsupportedEncodingException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -128,11 +125,4 @@ public class EmailConfig {
         this.password = password;
     }
 
-    public boolean getDebug() {
-        return debug;
-    }
-
-    public void isDebug(boolean debug) {
-        this.debug = debug;
-    }
 }
