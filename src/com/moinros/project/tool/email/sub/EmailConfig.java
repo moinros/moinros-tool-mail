@@ -1,9 +1,6 @@
 package com.moinros.project.tool.email.sub;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.util.Properties;
 
 /**
@@ -20,8 +17,6 @@ public class EmailConfig {
         return CONFIG;
     }
 
-    private boolean flag = true;
-
     /**
      * CONFIG_FILE_NAME : 配置文件路径
      */
@@ -37,35 +32,42 @@ public class EmailConfig {
      * 注释: 初始化配置参数
      */
     public void init() {
-        if (flag) {
-            flag = false;
-            // 读取自定义的全局配置文件;获取项目的全局配置信息
-            InputStream is = EmailConfig.class.getClassLoader().getResourceAsStream(configPath);
-            if (is != null) {
-                try {
-                    Properties config = new Properties();
-                    config.load(new InputStreamReader(is, "UTF-8"));
-                    port = (Integer.parseInt(config.getProperty("email.port")));
-                    host = config.getProperty("email.host");
-                    senderFrom = (config.getProperty("email.sender.from"));
-                    senderName = (config.getProperty("email.sender.name"));
-                    loginName = (config.getProperty("email.login.name"));
-                    password = (config.getProperty("email.login.password"));
-                } catch (UnsupportedEncodingException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
+        // 读取自定义的全局配置文件;获取项目的全局配置信息
+        InputStream is = EmailConfig.class.getClassLoader().getResourceAsStream(configPath);
+        if (is == null) {
+            try {
+                File file = new File(configPath);
+                if (file != null) {
+                    is = new FileInputStream(file);
                 }
-                try {
-                    if (is != null) {
-                        is.close();
-                    }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            } else {
-                throw new RuntimeException("没有找到配置文件！请在项目根目录下创建名为[" + configPath + "]的文件");
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
             }
+        }
+        if (is != null) {
+            try {
+                Properties config = new Properties();
+                config.load(new InputStreamReader(is, "UTF-8"));
+                port = (Integer.parseInt(config.getProperty("email.port")));
+                host = config.getProperty("email.host");
+                senderFrom = (config.getProperty("email.sender.from"));
+                senderName = (config.getProperty("email.sender.name"));
+                loginName = (config.getProperty("email.login.name"));
+                password = (config.getProperty("email.login.password"));
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                if (is != null) {
+                    is.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            throw new RuntimeException("没有找到配置文件！请在项目根目录下创建名为[" + configPath + "]的文件");
         }
     }
 

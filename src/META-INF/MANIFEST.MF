@@ -1,4 +1,3 @@
 Manifest-Version: 1.0
-Class-Path: javax.mail-1.6.2.jar commons-email-1.5.jar activation-1.1.1.
- jar
+Class-Path: javax.mail-1.6.2.jar commons-email-1.5.jar activation-1.1.1.jar
 
